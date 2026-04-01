@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linda Vlaming | Onderwijsinnovatie · Beleid · Open Innovatie</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal: #1D9E75;
+    --teal-light: #E1F5EE;
+    --teal-dark: #0F6E56;
+    --purple: #534AB7;
+    --purple-light: #EEEDFE;
+    --purple-dark: #3C3489;
+    --coral: #D85A30;
+    --coral-light: #FAECE7;
+    --amber: #BA7517;
+    --amber-light: #FAEEDA;
+    --dark: #2C2C2A;
+    --mid: #5F5E5A;
+    --light: #F1EFE8;
+    --white: #ffffff;
+    --border: rgba(44,44,42,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--dark);
+    background: #fafaf8;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-name { font-weight: 600; font-size: 15px; color: var(--dark); text-decoration: none; letter-spacing: -.01em; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--mid); text-decoration: none; transition: color .2s; }
+  .nav-links a:hover { color: var(--teal); }
+
+  /* HERO */
+  .hero {
+    background: var(--dark);
+    color: var(--white);
+    padding: 6rem 2rem 5rem;
+    text-align: center;
+  }
+  .hero-avatar {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: var(--teal);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 26px; font-weight: 700; color: var(--white);
+    margin-bottom: 1.5rem;
+    letter-spacing: -.02em;
+  }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; letter-spacing: -.03em; margin-bottom: .5rem; }
+  .hero-sub { font-size: clamp(1rem, 2.5vw, 1.2rem); color: #9FE1CB; font-weight: 400; margin-bottom: 1.5rem; }
+  .hero-tagline {
+    max-width: 640px; margin: 0 auto 2.5rem;
+    font-size: 1.05rem; color: rgba(255,255,255,0.75); line-height: 1.7;
+  }
+  .hero-tagline strong { color: var(--white); font-weight: 600; }
+  .hero-cta {
+    display: inline-block;
+    background: var(--teal); color: var(--white);
+    padding: .75rem 2rem; border-radius: 100px;
+    font-size: 14px; font-weight: 600; text-decoration: none;
+    transition: background .2s;
+  }
+  .hero-cta:hover { background: var(--teal-dark); }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
+  section.full { max-width: 100%; padding: 5rem 2rem; }
+  .section-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .12em; color: var(--teal); margin-bottom: .5rem;
+  }
+  h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; letter-spacing: -.02em; margin-bottom: 1rem; color: var(--dark); }
+  .intro-text { font-size: 1.05rem; color: var(--mid); line-height: 1.8; max-width: 680px; }
+
+  /* RODE LIJN */
+  .rode-lijn {
+    background: var(--dark); color: var(--white);
+    padding: 2.5rem 3rem; border-radius: 16px;
+    font-size: 1.2rem; line-height: 1.7; font-weight: 400;
+    border-left: 4px solid var(--teal);
+    margin: 2rem 0;
+  }
+  .rode-lijn strong { color: #9FE1CB; font-weight: 700; }
+
+  /* PIJLERS */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px; margin-top: 2rem;
+  }
+  .pillar-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    transition: border-color .2s, transform .2s;
+    cursor: default;
+  }
+  .pillar-card:hover { border-color: var(--teal); transform: translateY(-2px); }
+  .pillar-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; margin-bottom: 1rem;
+  }
+  .pillar-card h3 { font-size: 15px; font-weight: 700; margin-bottom: .4rem; color: var(--dark); }
+  .pillar-card p { font-size: 13px; color: var(--mid); line-height: 1.6; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: .75rem; }
+  .tag {
+    font-size: 10px; font-weight: 600; padding: 2px 8px;
+    border-radius: 20px; letter-spacing: .02em;
+  }
+
+  /* TIJDLIJN */
+  .timeline { position: relative; padding-left: 28px; margin-top: 2rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 8px; top: 8px; bottom: 0;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 2.5rem; }
+  .tl-dot {
+    position: absolute; left: -24px; top: 5px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--white); border: 2px solid var(--border);
+    transition: border-color .2s;
+  }
+  .tl-item:hover .tl-dot { border-color: var(--teal); background: var(--teal); }
+  .tl-period { font-size: 11px; font-weight: 700; color: var(--teal); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 2px; }
+  .tl-title { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 2px; }
+  .tl-org { font-size: 13px; color: var(--mid); margin-bottom: .5rem; }
+  .tl-desc { font-size: 13px; color: var(--mid); line-height: 1.6; }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--dark); color: var(--white);
+    padding: 5rem 2rem; text-align: center;
+  }
+  .contact-section h2 { color: var(--white); margin-bottom: 1rem; }
+  .contact-section p { color: rgba(255,255,255,.7); max-width: 480px; margin: 0 auto 2rem; font-size: 1rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .contact-link {
+    display: inline-block;
+    padding: .65rem 1.5rem; border-radius: 100px;
+    font-size: 13px; font-weight: 600; text-decoration: none;
+    transition: opacity .2s;
+  }
+  .contact-link:hover { opacity: .85; }
+  .contact-link.primary { background: var(--teal); color: var(--white); }
+  .contact-link.secondary { background: rgba(255,255,255,.1); color: var(--white); border: 1px solid rgba(255,255,255,.2); }
+
+  /* FOOTER */
+  footer { background: #1a1a18; color: rgba(255,255,255,.4); text-align: center; padding: 1.5rem; font-size: 12px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 1rem; }
+    .hero { padding: 4rem 1.25rem 3.5rem; }
+    .rode-lijn { padding: 1.5rem; font-size: 1rem; }
+    section { padding: 3.5rem 1.25rem; }
+    .contact-section { padding: 3.5rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-name">Linda Vlaming</a>
+  <ul class="nav-links">
+    <li><a href="#profiel">Profiel</a></li>
+    <li><a href="#pijlers">Pijlers</a></li>
+    <li><a href="#loopbaan">Loopbaan</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-avatar">LV</div>
+  <h1>Linda Vlaming MSc</h1>
+  <div class="hero-sub">Onderwijsinnovatie &nbsp;·&nbsp; Beleid &nbsp;·&nbsp; Open Innovatie &nbsp;·&nbsp; Europa</div>
+  <p class="hero-tagline">
+    <strong>Ik zoek geen functietitel. Ik zoek een doel.</strong><br>
+    Verbinder van bedrijf, onderwijs en maatschappij — 35 jaar ervaring, altijd in beweging.
+  </p>
+  <a href="#contact" class="hero-cta">Laten we in gesprek gaan</a>
+</div>
+
+<!-- PROFIEL -->
+<section id="profiel">
+  <div class="section-label">Wie ik ben</div>
+  <h2>De rode lijn</h2>
+
+  <div class="rode-lijn">
+    Ik bouw bruggen tussen werelden die normaal gescheiden blijven —
+    <strong>bedrijfsleven en onderwijs, praktijk en wetenschap, creativiteit en strategie.</strong>
+    Al 35 jaar lang, en elke keer opnieuw.
+  </div>
+
+  <p class="intro-text">
+    Na 17 jaar in finance, HR, marketing en softwareontwikkeling maakte ik een bewuste overstap naar het onderwijs.
+    Als docent, examinator en curriculumontwikkelaar werkte ik in het VO, VSO en MBO.
+    Ik deed wetenschappelijk onderzoek naar open innovatie in het hoger onderwijs (MSc, 2023)
+    en werkte mee aan een Europees STE(A)M-project.
+  </p>
+  <br>
+  <p class="intro-text">
+    Mijn betrokkenheid stopt niet bij mijn cv. Ik volg de democratie, vrouwenrechten en gelijke kansen
+    op de voet, deel mijn analyses en stel de vragen die anderen laten liggen.
+    Ik geloof dat creativiteit de motor is van echte innovatie — en dat goede communicatie maatschappelijke verandering mogelijk maakt.
+  </p>
+</section>
+
+<!-- PIJLERS -->
+<section id="pijlers" style="background: #f5f4f0; max-width: 100%; padding: 5rem 2rem;">
+<div style="max-width: 900px; margin: 0 auto;">
+  <div class="section-label">Kernpijlers</div>
+  <h2>Wat ik meeneem</h2>
+
+  <div class="pillars-grid">
+
+    <div class="pillar-card">
+      <div class="pillar-icon" style="background:#E1F5EE;">🎓</div>
+      <h3>Onderwijs & Curriculum</h3>
+      <p>Docent, examinator en ontwikkelaar op meerdere niveaus. Altijd lesgeven én verbeteren tegelijk.</p>
+      <div class="tag-row">
+        <span class="tag" style="background:#E1F5EE;color:#0F6E56;">Curriculumontwikkeling</span>
+        <span class="tag" style="background:#E1F5EE;color:#0F6E56;">LLO</span>
+        <span class="tag" style="background:#E1F5EE;color:#0F6E56;">Blended learning</span>
+      </div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-icon" style="background:#EEEDFE;">💡</div>
+      <h3>Innovatie & Onderzoek</h3>
+      <p>MSc op open innovatie in Europees hoger onderwijs. Creativiteit als motor van echte vernieuwing.</p>
+      <div class="tag-row">
+        <span class="tag" style="background:#EEEDFE;color:#3C3489;">Open innovatie</span>
+        <span class="tag" style="background:#EEEDFE;color:#3C3489;">STE(A)M</span>
+        <span class="tag" style="background:#EEEDFE;color:#3C3489;">EU-project</span>
+      </div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-icon" style="background:#FAEEDA;">🏗️</div>
+      <h3>Strategie & Beleid</h3>
+      <p>Van verandertrajecten in scholen tot beleidsadvies aan directies. Analyse die leidt tot actie.</p>
+      <div class="tag-row">
+        <span class="tag" style="background:#FAEEDA;color:#633806;">Strategie</span>
+        <span class="tag" style="background:#FAEEDA;color:#633806;">Verandermanagement</span>
+        <span class="tag" style="background:#FAEEDA;color:#633806;">Kwaliteitszorg</span>
+      </div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-icon" style="background:#FAECE7;">⚙️</div>
+      <h3>Bedrijfsvoering & HR</h3>
+      <p>17 jaar in finance, HR, marketing, inkoop en zelfgebouwde software. Twee werelden in één persoon.</p>
+      <div class="tag-row">
+        <span class="tag" style="background:#FAECE7;color:#712B13;">Finance</span>
+        <span class="tag" style="background:#FAECE7;color:#712B13;">HR</span>
+        <span class="tag" style="background:#FAECE7;color:#712B13;">Softwareontwikkeling</span>
+      </div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-icon" style="background:#E6F1FB;">🤖</div>
+      <h3>Digitalisering & AI</h3>
+      <p>Azure AI, Scrum Master, Google for Education. Technologie als middel, niet als doel.</p>
+      <div class="tag-row">
+        <span class="tag" style="background:#E6F1FB;color:#0C447C;">Azure AI</span>
+        <span class="tag" style="background:#E6F1FB;color:#0C447C;">Scrum PSM I</span>
+        <span class="tag" style="background:#E6F1FB;color:#0C447C;">e-learning</span>
+      </div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-icon" style="background:#F1EFE8;">🎨</div>
+      <h3>Creativiteit & Maatschappij</h3>
+      <p>Culturele achtergrond als fundament. Betrokken bij democratie, vrouwenrechten en gelijke kansen.</p>
+      <div class="tag-row">
+        <span class="tag" style="background:#F1EFE8;color:#444441;">D&I</span>
+        <span class="tag" style="background:#F1EFE8;color:#444441;">Maatschappij</span>
+        <span class="tag" style="background:#F1EFE8;color:#444441;">Communicatie</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- LOOPBAAN -->
+<section id="loopbaan">
+  <div class="section-label">Loopbaan</div>
+  <h2>35 jaar in beweging</h2>
+  <p class="intro-text">Geen rechte lijn — dat is precies de kracht ervan.</p>
+
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2024 – 2025</div>
+      <div class="tl-title">Docent & Onderwijsontwikkelaar</div>
+      <div class="tl-org">MBO College Airport · Hoofddorp</div>
+      <div class="tl-desc">Innovatief leertraject beveiligers — 834 deelnemers, modulair en hybride. Naast lesgeven actief het curriculum verbeterd en nieuwe toetsmethodieken ontwikkeld.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2022 – 2023</div>
+      <div class="tl-title">Onderzoeker Open Innovatie & STE(A)M</div>
+      <div class="tl-org">ArtIST · EU-project</div>
+      <div class="tl-desc">Kwalitatief onderzoek in Europese context naar creativiteit als motor van onderwijsinnovatie in het hoger onderwijs.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2021 – 2023</div>
+      <div class="tl-title">MSc Managementwetenschappen</div>
+      <div class="tl-org">Open Universiteit</div>
+      <div class="tl-desc">Thesis: Open Innovatie in Hoger Onderwijs op Europees niveau. Strategie & innovatie als specialisatie.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2015 – 2025</div>
+      <div class="tl-title">Docent, Examinator & Onderwijsontwikkelaar</div>
+      <div class="tl-org">Diverse instellingen · VO, VSO, MBO</div>
+      <div class="tl-desc">Maatschappijleer, Zorg & Welzijn, Engels. Altijd lesgeven én verbeteren — curriculumontwikkeling, digitalisering, beleidsadvies aan schoolleiding.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2018 – 2019</div>
+      <div class="tl-title">Interim Projectleider Bedrijfsvoering</div>
+      <div class="tl-org">Geert Groote College · Amsterdam</div>
+      <div class="tl-desc">Bedrijfsvoering gestabiliseerd en verbeterd. Brug geslagen tussen onderwijsprofessionals en ondersteunende diensten.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">1998 – 2015</div>
+      <div class="tl-title">Hoofd Bedrijfsvoering</div>
+      <div class="tl-org">Raldon Montage B.V. · Zwaag</div>
+      <div class="tl-desc">17 jaar breed: HR, finance, marketing, inkoop én projectsoftware zelf ontwikkeld. Gedreven door efficiëntie en innovatie.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">1995 – 1998</div>
+      <div class="tl-title">Medeoprichter & Zakelijk Directeur</div>
+      <div class="tl-org">Chester Media Arts Center · Engeland</div>
+      <div class="tl-desc">Creatief mediabedrijf opgezet in Engeland. Grafisch vormgeving, finance en acquisitie — eerste praktijkervaring met creativiteit als ondernemerskracht.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="section-label" style="color:#9FE1CB;">In gesprek</div>
+  <h2>Laten we praten</h2>
+  <p>Ik zoek geen functietitel — ik zoek een doel. Werkt u aan iets dat ertoe doet? Ik hoor het graag.</p>
+  <div class="contact-links">
+    <a href="mailto:hgmvlaming@gmail.com" class="contact-link primary">E-mail sturen</a>
+    <a href="https://www.linkedin.com/in/linda-vlaming" class="contact-link secondary" target="_blank">LinkedIn</a>
+  </div>
+  <p style="margin-top:1.5rem; font-size:12px; color:rgba(255,255,255,.35);">Europa &nbsp;·&nbsp; lindavlaming.eu</p>
+</div>
+
+<footer>
+  &copy; 2025 Linda Vlaming MSc &nbsp;·&nbsp; hgmvlaming@gmail.com
+</footer>
+
+</body>
+</html>
