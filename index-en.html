@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linda Vlaming | Education Innovation · Policy · Open Innovation</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --teal: #1D9E75; --teal-light: #E1F5EE; --teal-dark: #0F6E56;
+    --purple: #534AB7; --purple-light: #EEEDFE; --purple-dark: #3C3489;
+    --coral: #D85A30; --coral-light: #FAECE7;
+    --amber: #BA7517; --amber-light: #FAEEDA;
+    --dark: #2C2C2A; --mid: #5F5E5A; --light: #F1EFE8;
+    --white: #ffffff; --border: rgba(44,44,42,0.12);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; line-height: 1.7; color: var(--dark); background: #fafaf8; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--white); border-bottom: 1px solid var(--border);
+    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px;
+  }
+  .nav-name { font-weight: 600; font-size: 15px; color: var(--dark); text-decoration: none; letter-spacing: -.01em; }
+  .nav-right { display: flex; align-items: center; gap: 2rem; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--mid); text-decoration: none; transition: color .2s; }
+  .nav-links a:hover { color: var(--teal); }
+
+  .lang-switch {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid var(--border); border-radius: 20px;
+    padding: 3px 10px; color: var(--mid); text-decoration: none;
+    transition: border-color .2s, color .2s;
+    white-space: nowrap;
+  }
+  .lang-switch:hover { border-color: var(--teal); color: var(--teal); }
+  .lang-switch .active { color: var(--dark); }
+  .lang-switch .sep { color: var(--border); margin: 0 2px; }
+
+  .hero { background: var(--dark); color: var(--white); padding: 6rem 2rem 5rem; text-align: center; }
+  .hero-avatar {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: var(--teal); display: inline-flex; align-items: center; justify-content: center;
+    font-size: 26px; font-weight: 700; color: var(--white); margin-bottom: 1.5rem; letter-spacing: -.02em;
+  }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; letter-spacing: -.03em; margin-bottom: .5rem; }
+  .hero-sub { font-size: clamp(1rem, 2.5vw, 1.2rem); color: #9FE1CB; font-weight: 400; margin-bottom: 1.5rem; }
+  .hero-tagline { max-width: 640px; margin: 0 auto 2.5rem; font-size: 1.05rem; color: rgba(255,255,255,0.75); line-height: 1.7; }
+  .hero-tagline strong { color: var(--white); font-weight: 600; }
+  .hero-cta {
+    display: inline-block; background: var(--teal); color: var(--white);
+    padding: .75rem 2rem; border-radius: 100px; font-size: 14px; font-weight: 600;
+    text-decoration: none; transition: background .2s;
+  }
+  .hero-cta:hover { background: var(--teal-dark); }
+
+  section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
+  section.full { max-width: 100%; padding: 5rem 2rem; }
+  .section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--teal); margin-bottom: .5rem; }
+  h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; letter-spacing: -.02em; margin-bottom: 1rem; color: var(--dark); }
+  .intro-text { font-size: 1.05rem; color: var(--mid); line-height: 1.8; max-width: 680px; }
+
+  .rode-lijn {
+    background: var(--dark); color: var(--white);
+    padding: 2.5rem 3rem; border-radius: 16px;
+    font-size: 1.2rem; line-height: 1.7; font-weight: 400;
+    border-left: 4px solid var(--teal); margin: 2rem 0;
+  }
+  .rode-lijn strong { color: #9FE1CB; font-weight: 700; }
+
+  .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 2rem; }
+  .pillar-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 14px;
+    padding: 1.5rem; transition: border-color .2s, transform .2s; cursor: default;
+  }
+  .pillar-card:hover { border-color: var(--teal); transform: translateY(-2px); }
+  .pillar-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 1rem; }
+  .pillar-card h3 { font-size: 15px; font-weight: 700; margin-bottom: .4rem; color: var(--dark); }
+  .pillar-card p { font-size: 13px; color: var(--mid); line-height: 1.6; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: .75rem; }
+  .tag { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; letter-spacing: .02em; }
+
+  .timeline { position: relative; padding-left: 28px; margin-top: 2rem; }
+  .timeline::before { content: ''; position: absolute; left: 8px; top: 8px; bottom: 0; width: 2px; background: var(--border); }
+  .tl-item { position: relative; margin-bottom: 2.5rem; }
+  .tl-dot { position: absolute; left: -24px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--white); border: 2px solid var(--border); transition: border-color .2s; }
+  .tl-item:hover .tl-dot { border-color: var(--teal); background: var(--teal); }
+  .tl-period { font-size: 11px; font-weight: 700; color: var(--teal); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 2px; }
+  .tl-title { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 2px; }
+  .tl-org { font-size: 13px; color: var(--mid); margin-bottom: .5rem; }
+  .tl-desc { font-size: 13px; color: var(--mid); line-height: 1.6; }
+
+  .pub-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 14px;
+    padding: 1.5rem 1.75rem; border-left: 4px solid var(--teal); margin-top: 1.5rem;
+  }
+  .pub-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--teal); margin-bottom: .5rem; }
+  .pub-title { font-size: 1.05rem; font-weight: 700; color: var(--dark); margin-bottom: .5rem; line-height: 1.4; }
+  .pub-ref { font-size: 13px; color: var(--mid); }
+
+  .contact-section { background: var(--dark); color: var(--white); padding: 5rem 2rem; text-align: center; }
+  .contact-section h2 { color: var(--white); margin-bottom: 1rem; }
+  .contact-section p { color: rgba(255,255,255,.7); max-width: 480px; margin: 0 auto 2rem; font-size: 1rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .contact-link { display: inline-block; padding: .65rem 1.5rem; border-radius: 100px; font-size: 13px; font-weight: 600; text-decoration: none; transition: opacity .2s; }
+  .contact-link:hover { opacity: .85; }
+  .contact-link.primary { background: var(--teal); color: var(--white); }
+  .contact-link.secondary { background: rgba(255,255,255,.1); color: var(--white); border: 1px solid rgba(255,255,255,.2); }
+
+  footer { background: #1a1a18; color: rgba(255,255,255,.4); text-align: center; padding: 1.5rem; font-size: 12px; }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 1rem; }
+    .hero { padding: 4rem 1.25rem 3.5rem; }
+    .rode-lijn { padding: 1.5rem; font-size: 1rem; }
+    section { padding: 3.5rem 1.25rem; }
+    .contact-section { padding: 3.5rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-name">Linda Vlaming</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#profile">Profile</a></li>
+      <li><a href="#pillars">Pillars</a></li>
+      <li><a href="#career">Career</a></li>
+      <li><a href="#publication">Publication</a></li>
+      <li><a href="profiel.html">Profile Card</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="index.html" class="lang-switch">
+      <span>NL</span><span class="sep">|</span><span class="active">EN</span>
+    </a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-avatar">LV</div>
+  <h1>Linda Vlaming MSc</h1>
+  <div class="hero-sub">Education Innovation &nbsp;·&nbsp; Policy &nbsp;·&nbsp; Open Innovation &nbsp;·&nbsp; Europe</div>
+  <p class="hero-tagline">
+    <strong>I am not looking for a job title. I am looking for a purpose.</strong><br>
+    Connecting business, education and society — 35 years of experience, always moving forward.
+  </p>
+  <a href="#contact" class="hero-cta">Let's talk</a>
+</div>
+
+<section id="profile">
+  <div class="section-label">Who I am</div>
+  <h2>The connecting thread</h2>
+  <div class="rode-lijn">
+    I build bridges between worlds that normally remain separate —
+    <strong>business and education, practice and science, creativity and strategy.</strong>
+    35 years, and counting.
+  </div>
+  <p class="intro-text">
+    After 17 years in finance, HR, marketing and software development, I made a deliberate transition into education.
+    As a teacher, examiner and curriculum developer I worked across secondary, special and vocational education.
+    I conducted scientific research on open innovation in higher education (MSc, 2023)
+    and contributed to a European STE(A)M project.
+  </p>
+  <br>
+  <p class="intro-text">
+    My engagement does not stop at my CV. I follow democracy, women's rights and equal opportunities closely,
+    share my analyses and ask the questions others leave aside.
+    I believe creativity is the engine of real innovation — and that good communication makes societal change possible.
+  </p>
+</section>
+
+<section id="pillars" style="background: #f5f4f0; max-width: 100%; padding: 5rem 2rem;">
+<div style="max-width: 900px; margin: 0 auto;">
+  <div class="section-label">Core Pillars</div>
+  <h2>What I bring</h2>
+  <div class="pillars-grid">
+
+    <div class="pillar-card">
+      <div class="pillar-icon" style="background:#E1F5EE;">🎓</div>
+      <h3>Education & Curriculum</h3>
+      <p>Teacher, examiner and developer across multiple levels. Always teaching and improving simultaneously.</p>
+      <div class="tag-row">
+        <span class="tag" style="background:#E1F5EE;color:#0F6E56;">Curriculum development</span>
+        <span class="tag" style="background:#E1F5EE;color:#0F6E56;">Lifelong learning</span>
+        <span class="tag" style="background:#E1F5EE;color:#0F6E56;">Blended learning</span>
+      </div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-icon" style="background:#EEEDFE;">💡</div>
+      <h3>Innovation & Research</h3>
+      <p>MSc on open innovation in European higher education. Creativity as the engine of real renewal.</p>
+      <div class="tag-row">
+        <span class="tag" style="background:#EEEDFE;color:#3C3489;">Open innovation</span>
+        <span class="tag" style="background:#EEEDFE;color:#3C3489;">STE(A)M</span>
+        <span class="tag" style="background:#EEEDFE;color:#3C3489;">EU project</span>
+      </div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-icon" style="background:#FAEEDA;">🏗️</div>
+      <h3>Strategy & Policy</h3>
+      <p>From change management in schools to policy advice for directors. Analysis that leads to action.</p>
+      <div class="tag-row">
+        <span class="tag" style="background:#FAEEDA;color:#633806;">Strategy</span>
+        <span class="tag" style="background:#FAEEDA;color:#633806;">Change management</span>
+        <span class="tag" style="background:#FAEEDA;color:#633806;">Quality assurance</span>
+      </div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-icon" style="background:#FAECE7;">⚙️</div>
+      <h3>Operations & HR</h3>
+      <p>17 years in finance, HR, marketing, procurement and self-built software. Two worlds in one person.</p>
+      <div class="tag-row">
+        <span class="tag" style="background:#FAECE7;color:#712B13;">Finance</span>
+        <span class="tag" style="background:#FAECE7;color:#712B13;">HR</span>
+        <span class="tag" style="background:#FAECE7;color:#712B13;">Software development</span>
+      </div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-icon" style="background:#E6F1FB;">🤖</div>
+      <h3>Digitalisation & AI</h3>
+      <p>Azure AI, Scrum Master, Google for Education, Quantum. Technology as a means, not an end.</p>
+      <div class="tag-row">
+        <span class="tag" style="background:#E6F1FB;color:#0C447C;">Azure AI</span>
+        <span class="tag" style="background:#E6F1FB;color:#0C447C;">Scrum PSM I</span>
+        <span class="tag" style="background:#E6F1FB;color:#0C447C;">e-learning</span>
+      </div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-icon" style="background:#F1EFE8;">🎨</div>
+      <h3>Creativity & Society</h3>
+      <p>Cultural background as foundation. Engaged with democracy, women's rights and equal opportunities.</p>
+      <div class="tag-row">
+        <span class="tag" style="background:#F1EFE8;color:#444441;">D&I</span>
+        <span class="tag" style="background:#F1EFE8;color:#444441;">Society</span>
+        <span class="tag" style="background:#F1EFE8;color:#444441;">Communication</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div style="text-align:center;padding:2rem 0 0;">
+  <a href="profiel.html" style="display:inline-block;background:#1D9E75;color:#fff;padding:.7rem 1.8rem;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;">Explore the story behind my pillars →</a>
+</div>
+</section>
+
+<section id="career">
+  <div class="section-label">Career</div>
+  <h2>35 years in motion</h2>
+  <p class="intro-text">No straight line — that is precisely the strength of it.</p>
+
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2024 – 2025</div>
+      <div class="tl-title">Teacher, Language Assessor & Curriculum Developer</div>
+      <div class="tl-org">MBO College Airport · Hoofddorp</div>
+      <div class="tl-desc">Innovative learning programme for security professionals — 834 participants, modular and hybrid. Alongside teaching, actively improved curriculum and developed new assessment methodologies.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2022 – 2023</div>
+      <div class="tl-title">Researcher Open Innovation & STE(A)M</div>
+      <div class="tl-org">ArtIST · EU project</div>
+      <div class="tl-desc">MSc thesis conducted within European project ArtIST — focused on the transition from STEM to STEAM in master modules in higher education, through open innovation.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2021 – 2023</div>
+      <div class="tl-title">MSc Management Sciences</div>
+      <div class="tl-org">Open University Netherlands</div>
+      <div class="tl-desc">Thesis: The Influence of Social Capital on the Creative Process of STE(A)M Education Realisation in Higher Education through Open Innovation within a European Context.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2015 – 2025</div>
+      <div class="tl-title">Teacher, Examiner & Curriculum Developer</div>
+      <div class="tl-org">Various institutions · Secondary, Special & Vocational Education</div>
+      <div class="tl-desc">Citizenship, Health & Social Care, English. Always teaching and improving — curriculum development, digitalisation, policy advice to school management.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2018 – 2019</div>
+      <div class="tl-title">Interim Project Manager Operations</div>
+      <div class="tl-org">Geert Groote College · Amsterdam</div>
+      <div class="tl-desc">Operations stabilised and improved. Bridge built between teaching staff and administrative services.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">1998 – 2015</div>
+      <div class="tl-title">Head of Operations</div>
+      <div class="tl-org">Raldon Montage B.V. · Zwaag</div>
+      <div class="tl-desc">17 years of broad responsibility: HR, finance, marketing, procurement and self-built project management software. Strategic sparring partner to the director.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">1995 – 1998</div>
+      <div class="tl-title">Co-founder & Managing Director</div>
+      <div class="tl-org">Chester Media Arts Center · England</div>
+      <div class="tl-desc">Founded and managed a creative media company in England. Graphic design, finance and client acquisition — first hands-on experience connecting creativity and entrepreneurship.</div>
+    </div>
+
+  </div>
+</section>
+
+<section id="publication">
+  <div class="section-label">Publication</div>
+  <h2>Scientific contribution</h2>
+  <div class="pub-card">
+    <div class="pub-label">Conference Paper · 2026</div>
+    <div class="pub-title">The Art of Organizing Education Development within European Collaboration</div>
+    <div class="pub-ref">Kirkels, Y., Podmetina, D., <strong>Vlaming, L.</strong> (2026). Paper accepted at the R&D Management conference 2026.</div>
+  </div>
+</section>
+
+<div class="contact-section" id="contact">
+  <div class="section-label" style="color:#9FE1CB;">Get in touch</div>
+  <h2>Let's talk</h2>
+  <p>I am not looking for a job title — I am looking for a purpose. Working on something that matters? I would love to hear about it.</p>
+  <div class="contact-links">
+    <a href="mailto:linda@lindavlaming.eu" class="contact-link primary">Send an email</a>
+    <a href="https://www.linkedin.com/in/linda-vlaming" class="contact-link secondary" target="_blank">LinkedIn</a>
+  </div>
+  <p style="margin-top:1.5rem; font-size:12px; color:rgba(255,255,255,.35);">Europe &nbsp;·&nbsp; lindavlaming.eu</p>
+</div>
+
+<footer>
+  &copy; 2025 Linda Vlaming MSc &nbsp;·&nbsp; linda@lindavlaming.eu
+</footer>
+
+</body>
+</html>

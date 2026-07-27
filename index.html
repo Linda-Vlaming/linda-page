@@ -46,9 +46,20 @@
     height: 60px;
   }
   .nav-name { font-weight: 600; font-size: 15px; color: var(--dark); text-decoration: none; letter-spacing: -.01em; }
+  .nav-right { display: flex; align-items: center; gap: 2rem; }
   .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a { font-size: 13px; color: var(--mid); text-decoration: none; transition: color .2s; }
   .nav-links a:hover { color: var(--teal); }
+  .lang-switch {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid var(--border); border-radius: 20px;
+    padding: 3px 10px; color: var(--mid); text-decoration: none;
+    transition: border-color .2s, color .2s; white-space: nowrap;
+  }
+  .lang-switch:hover { border-color: var(--teal); color: var(--teal); }
+  .lang-switch .active { color: var(--dark); }
+  .lang-switch .sep { color: var(--border); margin: 0 2px; }
 
   /* HERO */
   .hero {
@@ -185,14 +196,19 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-name">Linda Vlaming</a>
-  <ul class="nav-links">
-    <li><a href="#profiel">Profiel</a></li>
-    <li><a href="#pijlers">Pijlers</a></li>
-    <li><a href="#loopbaan">Loopbaan</a></li>
-   <li><a href="#publicatie">Publicatie</a></li>
-   <li><a href="profiel.html">Profielkaart</a></li>
-   <li><a href="#contact">Contact</a></li>
-  </ul>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#profiel">Profiel</a></li>
+      <li><a href="#pijlers">Pijlers</a></li>
+      <li><a href="#loopbaan">Loopbaan</a></li>
+      <li><a href="#publicatie">Publicatie</a></li>
+      <li><a href="profiel.html">Profielkaart</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="index-en.html" class="lang-switch">
+      <span class="active">NL</span><span class="sep">|</span><span>EN</span>
+    </a>
+  </div>
 </nav>
 
 <!-- HERO -->
